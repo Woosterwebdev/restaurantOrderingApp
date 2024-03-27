@@ -1,0 +1,1 @@
+/* see www.emojiterra.com for more possible image options */
