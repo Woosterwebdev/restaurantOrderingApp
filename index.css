@@ -1,3 +1,79 @@
 body {
     margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+header {
+    background-image: url("images/burger.jpg");
+    background-size: cover;
+    background-position-y: center;
+    color: whitesmoke;
+    font-family: "Pacifico", cursive;
+    text-shadow: 0px 0px 4px black;
+    height: 150px;
+}
+
+h1 {
+    font-size: 32px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 16px;
+    margin-top: 10px;
+    
+}
+
+.title {
+    margin-left: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.text-align {
+    text-align: center;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #C6C6C6;
+}
+
+.item-img {
+    height: 60px;
+    margin: 30px;
+}
+
+.item-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 320px;
+}
+
+.item-description p{
+    margin: 7px 0 7px 0;
+    font-size: 18px;    
+    font-weight: bold;
+}
+
+#ingredients {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.item-name {
+    margin: 0;
+}
+.your-order {
+    margin-top: 20px;
 }

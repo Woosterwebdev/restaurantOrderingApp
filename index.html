@@ -3,10 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
     <title>Jimmy's Diner</title>
+    <!-- font awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+    <header>
+      <div class="title">
+        <h1>Jimmy's Diner</h1>
+        <h2>The best burgers and pizza in town.</h2>
+      </div>
+    </header>
+    <div class="container">
+      <div class="menu-item">
+        <div class="item-details">
+          <img class="item-img" src="images/pizza.png" />
+          <div class="item-description">
+            <h3 class="item-name">Pizza</h3>
+            <p id="ingredients">pepperoni, mushroom, mozarella</p>
+            <p>$14</p>
+          </div>
+        </div>
+        <img class="add-icon" src="images/add-icon.png" />
+      </div>
+      <div class="menu-item">
+        <div class="item-details">
+          <img class="item-img" src="images/burger.png" />
+          <div class="item-description">
+            <h3 class="item-name">Burger</h3>
+            <p id="ingredients">Beef, cheese, lettuce, sauce</p>
+            <p>$12</p>
+          </div>
+        </div>
+        <img class="add-icon" src="images/add-icon.png" />
+      </div>
+      <div class="menu-item">
+        <div class="item-details">
+          <img class="item-img" src="images/beer.png" />
+          <div class="item-description">
+            <h3 class="item-name">Beer</h3>
+            <p id="ingredients">Grain, hops, yeast, water</p>
+            <p>$12</p>
+          </div>
+        </div>
+        <img id="add-icon" src="images/add-icon.png" />
+      </div>
+      <div class="your-order">
+        <h3 class="text-align">Your Order</h3>
+        <div>
+          <div>
+            <h3>Pizza</h3>
+            <p>remove</p>
+          </div>
+          <p>$14</p>
+        </div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <script src="index.js"></script>
   </body>
+  <footer></footer>
 </html>
