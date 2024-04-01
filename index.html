@@ -30,33 +30,33 @@
       </div>
     </header>
     <div class="container">
-      <div class="menu-item">
+      <div class="menu-item m-0">
         <div class="item-details">
           <img class="item-img" src="images/pizza.png" />
           <div class="item-description">
-            <h3 class="item-name">Pizza</h3>
+            <h3 class="menu-item-name">Pizza</h3>
             <p class="ingredients">pepperoni, mushroom, mozarella</p>
             <p class="price">$14</p>
           </div>
         </div>
         <img class="add-icon" src="images/add-icon.png" />
       </div>
-      <div class="menu-item">
+      <div class="menu-item m-0">
         <div class="item-details">
           <img class="item-img" src="images/burger.png" />
           <div class="item-description">
-            <h3 class="item-name">Burger</h3>
+            <h3 class="menu-item-name">Burger</h3>
             <p class="ingredients">Beef, cheese, lettuce, sauce</p>
             <p class="price">$12</p>
           </div>
         </div>
         <img class="add-icon" src="images/add-icon.png" />
       </div>
-      <div class="menu-item">
+      <div class="menu-item m-0">
         <div class="item-details">
           <img class="item-img" src="images/beer.png" />
           <div class="item-description">
-            <h3 class="item-name">Beer</h3>
+            <h3 class="menu-item-name">Beer</h3>
             <p class="ingredients">Grain, hops, yeast, water</p>
             <p class="price">$12</p>
           </div>
@@ -64,16 +64,59 @@
         <img id="add-icon" src="images/add-icon.png" />
       </div>
       <div class="your-order">
-        <h3 class="text-align">Your Order</h3>
-        <div>
-          <div>
-            <p class="item-name">Pizza</p>
-            <button id="remove">remove</button>
+        <h3 class="text-align">-Your Order-</h3>
+        <div class="order-item">
+          <div class="item-remove">
+            <p class="item-name m-5">Pizza</p>
+            <button id="remove-btn" class="remove-btn">remove</button>
           </div>
-          <p class="price">$14</p>
+          <p class="price m-5">$14</p>
+        </div>
+        <div class="order-item">
+          <div class="item-remove">
+            <p class="item-name m-5">Beer</p>
+            <button id="remove-btn" class="remove-btn">remove</button>
+          </div>
+          <p class="price m-5">$12</p>
+        </div>
+        <div class="order-total m-0">
+          <p class="total m-5">Total:</p>
+          <p class="price m-5">$26</p>
         </div>
         <div></div>
-        <div></div>
+        <button id="complete-order" class="complete-order btn">
+          Complete Order
+        </button>
+      </div>
+    </div>
+    <div id="modal" class="modal">
+      <h2>Enter Card Details</h2>
+      <div>
+        <form class="pay-modal">
+          <input
+            class="pay-input"
+            type="text"
+            placeholder="Name as it appears on card"
+            required
+          />
+          <input
+            class="pay-input"
+            type="text"
+            name="fullName"
+            placeholder="Enter card number"
+            required
+          />
+          <input
+            class="pay-input"
+            type="text"
+            name="cardNumber"
+            placeholder="Enter CVV"
+            required
+          />
+          <div class="modal-btn">
+            <button class="pay-btn pay-input btn">Pay</button>
+          </div>
+        </form>
       </div>
     </div>
     <script src="index.js"></script>
