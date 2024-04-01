@@ -15,7 +15,7 @@ body {
     background-color: #16DB99;
     color: whitesmoke;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     font-size: 22px;
 }
 
@@ -157,15 +157,15 @@ h2 {
 /* modal */
 
 .modal {
-    display: inline;
+    display: none;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 540px;
+    height: 560px;
     width: 450px;
-    border-radius: 3px;
+    border-radius: 5px;
     box-shadow: 0px 0px 6px 4px #595959;
     margin: auto;
     background-color: whitesmoke;
@@ -178,14 +178,28 @@ h2 {
     justify-content: space-around;
     align-items: center;
     margin: 0 auto;
+    width: 400px;
 }
 
 .pay-input {
-    margin: 20px auto;
+    margin: 25px auto;
     height: 70px;
-    width: 400px;
-    border-radius: 3px;
-    text-align: center;
+    width: 396px;
+    border-radius: 5px;
     font-size: 20px;
+    padding: 0;
 }
 
+.pay-btn {
+    margin: 25px auto;
+    height: 70px;
+    width: 400px;
+}
+
+.order-complete {
+    text-align: center;
+    background-color: #ECFDF5;
+    color: #065F46;
+    font-size: 32px;
+    padding: 25px 30px;
+}
