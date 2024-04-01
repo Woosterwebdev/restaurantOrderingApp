@@ -32,7 +32,7 @@ h2 {
     display: flex;
     flex-direction: column;
     max-width: 90%;
-    margin: 20px auto;
+    margin: 0 auto;
 }
 
 .text-align {
@@ -45,6 +45,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #C6C6C6;
+    margin: 0;
 }
 
 .item-img {
@@ -60,20 +61,24 @@ h2 {
     width: 320px;
 }
 
-.item-description p{
+.item-description{
     margin: 7px 0 7px 0;
-    font-size: 18px;    
-    font-weight: bold;
 }
 
-#ingredients {
+.ingredients {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .item-name {
-    margin: 0;
+    font-size: 22px;
+    margin: 15px 0 0 0;
 }
 .your-order {
     margin-top: 20px;
+}
+
+.price {
+    font-size: 20px;    
+    font-weight: bold;
 }
