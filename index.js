@@ -1,6 +1,6 @@
 import { menuArray } from "./data.js";
 
-let totalPrice = 0
+let totalPriceArr = []
 let orderItemsArr = []
 
 
@@ -41,36 +41,48 @@ function getMenuItems() {
 getMenuItems()
 
 function handleAddItemClick(addedItem) {
-  orderItemsArr.push(addedItem)
-  // renderOrderItems()
+  orderItemsArr.push(Number(addedItem))
+  // totalPrice()
+  renderOrderItems()
 }
 
 function renderOrderItems() {
   let yourOrder = ``
-
   orderItemsArr.forEach(function(item){
+    const itemObj = menuArray.filter(function(menuItem){
+      return menuItem.id === item
+    })[0]
+    
     yourOrder += `
-    <h3 class="text-align">-Your Order-</h3>
       <div class="order-item">
         <div class="item-remove">
-          <p class="item-name m-5">${item.name}/p>
-          <button id="remove-btn" class="remove-btn" data-remove="${item.id}">remove</button>
+          <p class="item-name m-5">${itemObj.name}</p>
+          <button id="remove-btn" class="remove-btn" data-remove="${itemObj.id}">remove</button>
         </div>
-        <p class="price m-5">$ ${item.price}</p>
+        <p class="price m-5">$ ${itemObj.price}</p>
       </div>
-    `  
+    `
     })
+  document.getElementById('your-order').classList.remove('hidden')
   document.getElementById('your-order').innerHTML = yourOrder
-}
+  document.getElementById('your-total').innerHTML = `
+    <div class="order-total m-0">
+      <p class="total m-5">Total:</p>
+      <p class="price m-5">$ ${totalPrice}</p>
+    </div>
+    <div>
+      <button id="complete-order" class="complete-order btn">
+      Complete Order
+      </button>
+    </div>
+    `
   
-
-
-function getItem(id){
-  const itemObj = menuArray.filter(function(item){
-    return menuArray.id === id
-  })
-  console.log(itemObj.name)
 }
+
+function renderTotal(){
+  
+}
+
 // function handleRemoveItemClick() {
 
 // }
