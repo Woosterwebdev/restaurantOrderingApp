@@ -1,37 +1,76 @@
 import { menuArray } from "./data.js";
 
-// document.addEventListener('click', function(e) {
-//     // switch statement
-// })
+let totalPrice = 0
+let orderItemsArr = []
 
 
-console.log(menuArray)
+document.addEventListener('click', function(e) {
+    // switch statement or if/else?
+    
+    if (e.target.dataset.add){
+      handleAddItemClick(e.target.dataset.add)
+    } else if (e.target.dataset.remove){
+      handleRemoveItemClick(e.target.dataset.remove)
+    } else if (e.target.dataset.complete){
+      handleCompleteOrderClick()
+    } else if (e.target.dataset.pay){
+      handlePayClick()
+    }
+})
 
-// function getMenuItems() {
-//     let menuItems = ``
+function getMenuItems() {
+    let menuItems = ``
+    menuArray.forEach(function(item) {
+      let ingredients = item.ingredients.join(', ')
+      menuItems +=`
+        <div class="menu-item">
+          <div class="item-details">
+            <img class="item-img" src="${item.image}" />
+              <div class="item-description">
+                <h3 class="item-name">${item.name}</h3>
+                <p class="ingredients">${ingredients}</p>
+                <p class="price">$ ${item.price}</p>
+              </div>
+          </div>
+          <img id="add-icon" data-add="${item.id}" src="images/add-icon.png" />
+        </div>`
+    })
+    document.getElementById('menu').innerHTML = menuItems
+}
 
-//     menuArray.forEach(function(item) {
-//         menuItems +=`
-//             <div class="menu-item">
-//                 <div class="item-details">
-//                 <img class="item-img" src="${item.image}" />
-//                 <div class="item-description">
-//                     <h3 class="item-name">${item.name}</h3>
-//                     <p class="ingredients">${item.ingredients}</p>
-//                     <p class="price">$ ${item.price}</p>
-//                 </div>
-//                 </div>
-//                 <img id="add-icon" src="images/add-icon.png" />
-//             </div>`
-//     })
-//     console.log(menuItems)
-//     // document.getElementById('menu').innerHTML = menuItems
-// }
+getMenuItems()
 
-// function handleAddItemClick() {
+function handleAddItemClick(addedItem) {
+  orderItemsArr.push(addedItem)
+  // renderOrderItems()
+}
 
-// }
+function renderOrderItems() {
+  let yourOrder = ``
 
+  orderItemsArr.forEach(function(item){
+    yourOrder += `
+    <h3 class="text-align">-Your Order-</h3>
+      <div class="order-item">
+        <div class="item-remove">
+          <p class="item-name m-5">${item.name}/p>
+          <button id="remove-btn" class="remove-btn" data-remove="${item.id}">remove</button>
+        </div>
+        <p class="price m-5">$ ${item.price}</p>
+      </div>
+    `  
+    })
+  document.getElementById('your-order').innerHTML = yourOrder
+}
+  
+
+
+function getItem(id){
+  const itemObj = menuArray.filter(function(item){
+    return menuArray.id === id
+  })
+  console.log(itemObj.name)
+}
 // function handleRemoveItemClick() {
 
 // }
@@ -48,9 +87,7 @@ console.log(menuArray)
 
 // }
 
-// function renderOrderItems() {
 
-// }
 
 /* see www.emojiterra.com for more possible image options 
 menu item
@@ -71,11 +108,12 @@ your order
         <div class="order-item">
           <div class="item-remove">
             <p class="item-name m-5">NAME</p>
-            <button id="remove-btn" class="remove-btn">remove</button>
+            <button id="remove-btn" class="remove-btn" data-remove="${item.id}">remove</button>
           </div>
           <p class="price m-5">$ PRICE</p>
         </div>
-        
+
+your total        
         <div class="order-total m-0">
           <p class="total m-5">Total:</p>
           <p class="price m-5">$26</p>
