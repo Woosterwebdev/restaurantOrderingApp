@@ -1,6 +1,6 @@
 import { menuArray } from "./data.js";
 
-let totalPriceArr = []
+let totalPrice = 0
 let orderItemsArr = []
 
 
@@ -41,9 +41,9 @@ function getMenuItems() {
 getMenuItems()
 
 function handleAddItemClick(addedItem) {
-  orderItemsArr.push(Number(addedItem))
-  // totalPrice()
+  orderItemsArr.push(Number(addedItem))  // Change to push whole obj instead of just id.
   renderOrderItems()
+  renderTotal()
 }
 
 function renderOrderItems() {
@@ -51,8 +51,7 @@ function renderOrderItems() {
   orderItemsArr.forEach(function(item){
     const itemObj = menuArray.filter(function(menuItem){
       return menuItem.id === item
-    })[0]
-    
+    })[0]    
     yourOrder += `
       <div class="order-item">
         <div class="item-remove">
@@ -64,7 +63,10 @@ function renderOrderItems() {
     `
     })
   document.getElementById('your-order').classList.remove('hidden')
-  document.getElementById('your-order').innerHTML = yourOrder
+  document.getElementById('your-order').innerHTML = yourOrder 
+}
+
+function renderTotal(){
   document.getElementById('your-total').innerHTML = `
     <div class="order-total m-0">
       <p class="total m-5">Total:</p>
@@ -76,11 +78,6 @@ function renderOrderItems() {
       </button>
     </div>
     `
-  
-}
-
-function renderTotal(){
-  
 }
 
 // function handleRemoveItemClick() {
