@@ -11,6 +11,14 @@ body {
     margin: 5px;
 }
 
+.mt-10{
+    margin-top: 10px;
+}
+
+mb-5{
+    margin-bottom: 5px;
+}
+
 .btn {
     background-color: #16DB99;
     color: whitesmoke;
@@ -157,7 +165,6 @@ h2 {
 /* modal */
 
 .modal {
-    display: none;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -202,4 +209,8 @@ h2 {
     color: #065F46;
     font-size: 32px;
     padding: 25px 30px;
+}
+
+.hidden{
+    display: none;
 }

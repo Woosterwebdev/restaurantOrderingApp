@@ -1,23 +1,27 @@
 import { menuArray } from "./data.js";
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 
-let totalPrice = 0
+const payModal = document.getElementById('pay-modal')
 let orderItemsArr = []
-
-
+// Event listener
 document.addEventListener('click', function(e) {
     // switch statement or if/else?
     
     if (e.target.dataset.add){
       handleAddItemClick(e.target.dataset.add)
-    } else if (e.target.dataset.remove){
+    }
+    if (e.target.dataset.remove){
       handleRemoveItemClick(e.target.dataset.remove)
-    } else if (e.target.dataset.complete){
+    }
+    if (e.target.dataset.complete){
       handleCompleteOrderClick()
-    } else if (e.target.dataset.pay){
+    }
+    if (e.target.dataset.pay){
+      e.preventDefault()
       handlePayClick()
     }
 })
-
+// Render Menu
 function getMenuItems() {
     let menuItems = ``
     menuArray.forEach(function(item) {
@@ -37,64 +41,88 @@ function getMenuItems() {
     })
     document.getElementById('menu').innerHTML = menuItems
 }
-
 getMenuItems()
-
-function handleAddItemClick(addedItem) {
-  orderItemsArr.push(Number(addedItem))  // Change to push whole obj instead of just id.
-  renderOrderItems()
-  renderTotal()
+// Add item to order
+function handleAddItemClick(itemId) {
+  menuArray.filter(function(item){
+    if (itemId == item.id){
+      orderItemsArr.push({name: item.name, price: item.price, uuid: uuidv4()})
+    }
+  })
+  renderOrderItems(orderItemsArr)
 }
-
-function renderOrderItems() {
-  let yourOrder = ``
-  orderItemsArr.forEach(function(item){
-    const itemObj = menuArray.filter(function(menuItem){
-      return menuItem.id === item
-    })[0]    
-    yourOrder += `
-      <div class="order-item">
-        <div class="item-remove">
-          <p class="item-name m-5">${itemObj.name}</p>
-          <button id="remove-btn" class="remove-btn" data-remove="${itemObj.id}">remove</button>
-        </div>
-        <p class="price m-5">$ ${itemObj.price}</p>
+// pass rendered order to handleAddItemClick()
+function renderOrderItems(arr) {
+  if (arr.length > 0){
+  const yourOrder = arr.map(function(item){
+    return `
+    <div class="order-item">
+      <div class="item-remove">
+        <p class="item-name m-5">${item.name}</p>
+        <button id="remove-btn" class="remove-btn" data-remove="${item.uuid}">remove</button>
       </div>
+      <p class="price m-5">$ ${item.price}</p>
+    </div>
     `
-    })
-  document.getElementById('your-order').classList.remove('hidden')
-  document.getElementById('your-order').innerHTML = yourOrder 
+    }).join('')
+  document.getElementById('order-section').innerHTML = `
+  <h3 id="your-order" class="text-align">-Your Order-</h3>
+  ${yourOrder}
+  `
+  renderTotal(arr)
+  }else{
+    document.getElementById('order-section').innerHTML = ``
+    document.getElementById('your-total').innerHTML = ``
+  }
 }
+// pass rendered total to renderOrderItems()
+function renderTotal(arr){
+  const totalPrice = arr.reduce(function (total, currentItem){
+    return total + currentItem.price  
+  }, 0)
 
-function renderTotal(){
   document.getElementById('your-total').innerHTML = `
-    <div class="order-total m-0">
-      <p class="total m-5">Total:</p>
-      <p class="price m-5">$ ${totalPrice}</p>
+    <div class="order-total">
+      <p class="total m-5 mt-10">Total:</p>
+      <p class="price m-5 mt-10">$ ${totalPrice}</p>
     </div>
     <div>
-      <button id="complete-order" class="complete-order btn">
+      <button id="complete-order" class="complete-order btn" data-complete="complete">
       Complete Order
       </button>
     </div>
     `
 }
+// remove items from orderItemsArr
+function handleRemoveItemClick(uuid) {
+  orderItemsArr.forEach(function (item, index){
+    if (uuid === item.uuid){
+      orderItemsArr.splice(index, 1)
+      renderOrderItems(orderItemsArr)
+    }
+  })
+}
+// prompt payment
+function handleCompleteOrderClick() {
+  document.getElementById('modal').classList.remove('hidden')
+}
 
-// function handleRemoveItemClick() {
+function handlePayClick() {
+  const payModalData = new FormData(payModal)
+  const customerName = payModalData.get('name')
+  document.getElementById('modal').classList.add('hidden')
+  clearOrderItemsArr()
+  renderOrderItems(orderItemsArr)
+  document.getElementById('order-section').innerHTML = `
+  <h3 class="order-complete">
+    Thanks, ${customerName}! Your order is on it's way!
+  </h3>
+  `
+}
 
-// }
-
-// function totalOrder() {
-
-// }
-
-// function handleCompleteOrderClick() {
-
-// }
-
-// function handlePayClick() {
-
-// }
+function clearOrderItemsArr(){
+  orderItemsArr = []
+}
 
 
 
